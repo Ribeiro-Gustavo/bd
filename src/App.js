@@ -23,9 +23,9 @@ import {
 import './App.css';
 
 function App() {
-  const [titulo, setTitulo] = useState('');
+  const [descricao, setdescricao] = useState('');
   const [autor, setAutor] = useState('');
-  const [idPost, setIdPost] = useState('')
+  const [idtarefa, setidtarefa] = useState('')
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
@@ -33,26 +33,26 @@ function App() {
   const [user, setUser] = useState(false);
   const [userDetail, setUserDetail] = useState({})
 
-  const [posts, setPosts] = useState([]);
+  const [tarefas, settarefas] = useState([]);
 
   useEffect(() => {
-    async function loadPosts(){
-      const unsub = onSnapshot(collection(db, "posts"), (snapshot) => {
-        let listaPost = [];
+    async function loadtarefas(){
+      const unsub = onSnapshot(collection(db, "tarefas"), (snapshot) => {
+        let listatarefa = [];
 
         snapshot.forEach((doc) => {
-          listaPost.push({
+          listatarefa.push({
             id: doc.id,
-            titulo: doc.data().titulo,
+            descricao: doc.data().descricao,
             autor: doc.data().autor,
           })
         })
   
-        setPosts(listaPost);
+        settarefas(listatarefa);
       })
     }
 
-    loadPosts();
+    loadtarefas();
 
   }, [])
 
@@ -82,8 +82,8 @@ function App() {
 
 
   async function handleAdd(){
-    // await setDoc(doc(db, "posts", "12345"), {
-    //   titulo: titulo,
+    // await setDoc(doc(db, "tarefas", "12345"), {
+    //   descricao: descricao,
     //   autor: autor,
     // })
     // .then(() => {
@@ -94,14 +94,14 @@ function App() {
     // }) 
 
 
-    await addDoc(collection(db, "posts"), {
-      titulo: titulo,
+    await addDoc(collection(db, "tarefas"), {
+      descricao: descricao,
       autor: autor,
     })
     .then(() => {
       console.log("CADASTRADO COM SUCESSO")
       setAutor('');
-      setTitulo('')
+      setdescricao('')
     })
     .catch((error) => {
       console.log("ERRO " + error)
@@ -111,32 +111,32 @@ function App() {
   }
 
 
-  async function buscarPost(){
-    // const postRef = doc(db, "posts", "vFvZAyFqebXFsFv0X89l")
-    // await getDoc(postRef)
+  async function buscartarefa(){
+    // const tarefaRef = doc(db, "tarefas", "vFvZAyFqebXFsFv0X89l")
+    // await getDoc(tarefaRef)
     // .then((snapshot) => {
     //   setAutor(snapshot.data().autor)
-    //   setTitulo(snapshot.data().titulo)
+    //   setdescricao(snapshot.data().descricao)
 
     // })
     // .catch(()=>{
     //   console.log("ERRO AO BUSCAR")
     // })
 
-    const postsRef = collection(db, "posts")
-    await getDocs(postsRef)
+    const tarefasRef = collection(db, "tarefas")
+    await getDocs(tarefasRef)
     .then((snapshot) => {
       let lista = [];
 
       snapshot.forEach((doc) => {
         lista.push({
           id: doc.id,
-          titulo: doc.data().titulo,
+          descricao: doc.data().descricao,
           autor: doc.data().autor,
         })
       })
 
-      setPosts(lista);
+      settarefas(lista);
 
     })
     .catch((error) => {
@@ -147,19 +147,19 @@ function App() {
   }
 
 
-  async function editarPost(){
-    const docRef = doc(db, "posts", idPost)
+  async function editartarefa(){
+    const docRef = doc(db, "tarefas", idtarefa)
     
     await updateDoc(docRef, {
-      titulo: titulo,
+      descricao: descricao,
       autor: autor
     })
     .then(() => {
-      console.log("POST ATUALIZADO!")
-      setIdPost('')
-      setTitulo('')
+      console.log("tarefa ATUALIZADO!")
+      setidtarefa('')
+      setdescricao('')
       setAutor('')
-      alert("POST ATUALIZADO COM SUCESSO!")
+      alert("tarefa ATUALIZADO COM SUCESSO!")
     })
     .catch((error) => {
       console.log(error)
@@ -169,11 +169,11 @@ function App() {
   }
 
 
-  async function excluirPost(id){
-    const docRef = doc(db, "posts", id)
+  async function excluirtarefa(id){
+    const docRef = doc(db, "tarefas", id)
     await deleteDoc(docRef)
     .then(() =>{
-      alert("POST DELETADO COM SUCESSO!")
+      alert("tarefa DELETADO COM SUCESSO!")
     })
 
   }
@@ -265,43 +265,43 @@ function App() {
     <div className="container">
       <h2>LISTA</h2>
 
-      <label>ID do Post:</label>
+      <label>Número da tarefa:</label>
       <input
-        placeholder='Digite o ID do post'
-        value={idPost}
-        onChange={ (e) => setIdPost(e.target.value) }
+        placeholder='Digite o Número da tarefa'
+        value={idtarefa}
+        onChange={ (e) => setidtarefa(e.target.value) }
       /> <br/>
 
-      <label>Titulo:</label>
+      <label>descricao:</label>
       <textarea 
         type="text"
-        placeholder='Digite o titulo'
-        value={titulo}
-        onChange={ (e) => setTitulo(e.target.value) }
+        placeholder='Digite o descricao'
+        value={descricao}
+        onChange={ (e) => setdescricao(e.target.value) }
       />
 
       <label>Autor:</label>
       <input 
         type="text" 
-        placeholder="Autor do post"
+        placeholder="Autor da Terefa"
         value={autor}
         onChange={(e) => setAutor(e.target.value) }
       />
 
       <button onClick={handleAdd}>Cadastrar</button>
-      <button onClick={buscarPost}>Buscar post</button> <br/>
+      <button onClick={buscartarefa}>Buscar tarefa</button> <br/>
 
-      <button onClick={editarPost}>Atualizar post</button>
+      <button onClick={editartarefa}>Atualizar tarefa</button>
 
 
       <ul>
-        {posts.map( (post) => {
+        {tarefas.map( (tarefa) => {
           return(
-            <li key={post.id}>
-              <strong>ID: {post.id}</strong> <br/>
-              <span>Titulo: {post.titulo} </span> <br/>
-              <span>Autor: {post.autor}</span> <br/> 
-              <button onClick={ () => excluirPost(post.id) }>Excluir</button> <br/> <br/>
+            <li key={tarefa.id}>
+              <strong>ID: {tarefa.id}</strong> <br/>
+              <span>descricao: {tarefa.descricao} </span> <br/>
+              <span>Autor: {tarefa.autor}</span> <br/> 
+              <button onClick={ () => excluirtarefa(tarefa.id) }>Excluir</button> <br/> <br/>
             </li>
           )
         })}
