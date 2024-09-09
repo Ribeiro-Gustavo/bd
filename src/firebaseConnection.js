@@ -5,13 +5,13 @@ import {  getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyA-n6OI-jh-Nf-9b8Vc16pkp59LQJGE5uw",
-  authDomain: "banco-27538.firebaseapp.com",
-  projectId: "banco-27538",
-  storageBucket: "banco-27538.appspot.com",
-  messagingSenderId: "657206983237",
-  appId: "1:657206983237:web:7a21d1dcc4f8e84958012c"
-  };
+  apiKey: "AIzaSyDrEwqTid-zZaxOOZpcVcbFfhWBsIDHXYM",
+  authDomain: "ticketsb-dfb9a.firebaseapp.com",
+  projectId: "ticketsb-dfb9a",
+  storageBucket: "ticketsb-dfb9a.appspot.com",
+  messagingSenderId: "886048720033",
+  appId: "1:886048720033:web:efce3400f7e723023c5ce0"
+};
 
 const firebaseapp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseapp);
