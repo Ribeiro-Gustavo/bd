@@ -51,9 +51,9 @@ body {
 }
 .esqueci {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-    
+    gap: 10px;
+    margin-bottom: 0px;
+    position: relative;
 }
 section {
     left: 250px;
