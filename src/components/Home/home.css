@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: white;
+    background: #dfdfdf;
     padding: 30px;
     width: 1000px;
     border-radius: 10px;
@@ -90,8 +90,8 @@ ul {
     padding: 0;
     margin-top: 20px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Cria um grid com 3 colunas */
-    gap: 10px; /* Espaço entre os itens do grid */
+    grid-template-columns: repeat(auto-fill, minmax(250px, fr));
+    gap: 5px; 
 }
 
 li {
@@ -99,7 +99,8 @@ li {
     padding: 10px;
     border-radius: 25px;
     box-shadow: 0px 2px 5px rgba(0,0,0,0.05);
-    text-align: center; /* Centraliza o texto dentro do item da lista */
+    text-align: center; 
+    min-width: 350px;
 }
 
 li strong {

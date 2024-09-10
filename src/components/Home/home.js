@@ -19,12 +19,10 @@ const App = () => {
     novoUsuario,
     logarUsuario,
     fazerLogout
-  } = useAppLogic(); // Uso do hook personalizado
+  } = useAppLogic();
 
   return (
     <div>
-      <h1>Lista de tarefas</h1>
-
       {user && (
         <div>
           <strong>Seja bem-vindo(a) (Você está logado!)</strong> <br />

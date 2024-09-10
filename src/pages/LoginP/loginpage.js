@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom'; // Importar o hook useNavigate
-import { auth } from '../../firebaseConnection'; // Ajuste o caminho conforme necessário
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../../firebaseConnection'; 
 import './loginpage.css';
 
 const LoginT = () => {
@@ -49,15 +49,6 @@ const LoginT = () => {
         />
       </div>
       {error && <p className="error-message">{error}</p>}
-      <div className="esqueci">
-        <section>
-          <input type="radio" id="lembrar"/>
-          <label htmlFor="lembrar">Lembrar de mim</label>
-        </section>
-        <section>
-          <a href="#">Esqueci minha senha</a>
-        </section>
-      </div>
       <div className="caixa-submit">
         <button className="botao-submit" id="entrar" onClick={handleLogin}></button>
         <label htmlFor="entrar">Entrar</label>
