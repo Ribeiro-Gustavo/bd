@@ -53,15 +53,17 @@ body {
     display: flex;
     justify-content: space-between;
     margin-bottom: 40px;
+    
 }
 section {
+    left: 250px;
     display: flex;
     align-items: center;
     font-size: 14px;
     color: #555;
 }
 #lembrar {
-    margin-right: 10px;
+    margin-right: 1px;
 }
 a {
     text-decoration: none;
@@ -99,7 +101,7 @@ section a {
 .link-registrar {
     text-align: center;
     font-size: 15px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .link-registrar a {
     color: #000;
